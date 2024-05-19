@@ -46,7 +46,6 @@
 TaskHandle_t xTaskBlinkHandle;
 TaskHandle_t xTaskUSBSend;
 
-char message[] = "Hello World\n\r";
 
 /* USER CODE END PV */
 
