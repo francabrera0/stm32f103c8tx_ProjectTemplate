@@ -44,7 +44,7 @@
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
 TaskHandle_t xTaskBlinkHandle;
-TaskHandle_t xTaskUSBSend;
+TaskHandle_t xTaskDoNothingHandle;
 
 
 /* USER CODE END PV */
@@ -55,7 +55,7 @@ static void MX_GPIO_Init(void);
 
 /* USER CODE BEGIN PFP */
 static void taskBlink(void *params);
-static void taskUSBSend(void *params);
+static void taskDoNothing(void *params);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -126,7 +126,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  xTaskCreate(taskUSBSend, "taskUSBSend", 0x100, NULL, configMAX_PRIORITIES, xTaskUSBSend);
+  xTaskCreate(taskDoNothing, "taskDoNothing", 0x100, NULL, configMAX_PRIORITIES, xTaskDoNothingHandle);
   xTaskCreate(taskBlink, "taskBlink", 0x100, NULL, (configMAX_PRIORITIES-5), xTaskBlinkHandle);
 
   vTaskStartScheduler();
@@ -234,7 +234,7 @@ static void taskBlink (void *params)
   }
 }
 
-static void taskUSBSend(void *params)
+static void taskDoNothing(void *params)
 {
   UNUSED(params);
 
