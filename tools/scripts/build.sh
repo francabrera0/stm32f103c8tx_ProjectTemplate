@@ -9,5 +9,5 @@ if [ $? -eq 0 ]; then
     cd build/$1
     make
 else
-    echo "Incorrect debug type"
+    echo "Incorrect debug type."
 fi

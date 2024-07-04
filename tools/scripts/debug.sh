@@ -8,9 +8,7 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-./tools/scripts/build.sh Debug
-
-./tools/scripts/program.sh $1
+./tools/scripts/program.sh $1 Debug
 
 GDBSERVER="$1/STLink-gdb-server/bin/ST-LINK_gdbserver"
 PROGRAMER="$1/STM32CubeProgrammer/bin"
