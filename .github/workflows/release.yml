@@ -1,15 +1,15 @@
 name: Release
 
-on: 
+on:
   push:
     tags: '*.*.*'
- 
+
 jobs:
   release:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Prepare enviroment
+      - name: Prepare environment
         run: sudo apt update && sudo apt install gcc-arm-none-eabi
 
       - name: Checkout repository
@@ -17,24 +17,29 @@ jobs:
 
       - name: Build app
         run: ./tools/scripts/build.sh Release
-    
-      - name: Create release
-        id: create_release
-        uses: actions/create-release@v1.1.4
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get the latest release
+        id: get_latest_release
+        uses: actions/github-script@v6
         with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
-          draft: false
-          prerelease: false
+          script: |
+            const { data: releases } = await github.rest.repos.listReleases({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              per_page: 1
+            });
+            if (releases.length === 0) {
+              throw new Error('No releases found');
+            }
+            return releases[0].upload_url;
+          result-encoding: string
 
       - name: Upload release asset
         uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          upload_url: ${{ steps.get_latest_release.outputs.result }}
           asset_path: build/Release/app.elf
           asset_name: app.elf
-          asset_content_type: elf
+          asset_content_type: application/elf
