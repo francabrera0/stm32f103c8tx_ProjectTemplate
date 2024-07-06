@@ -1,0 +1,36 @@
+name: Build and release
+
+on: 
+tags:
+  branches: main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Prepare enviroment
+        run: sudo apt update && sudo apt install gcc-arm-none-eabi
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build app
+        run: ./tools/scripts/build.sh Release
+    
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Upload release asset
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: build/Release/app.elf
+          asset_name: app.elf
+          asset_content_type: elf
