@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build app
-        run: ./tools/script/build.sh Release
+        run: ./tools/scripts/build.sh Release
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
