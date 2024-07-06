@@ -1,0 +1,22 @@
+name: Build
+on: [push, pull_request] 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Prepare enviroment
+        run: sudo apt update && sudo apt install gcc-arm-none-eabi
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build app
+        run: ./tools/scripts/build.sh Release
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app
+          path: build/Release/app.elf
