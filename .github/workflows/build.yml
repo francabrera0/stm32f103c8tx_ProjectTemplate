@@ -6,17 +6,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Update repositories
-        run: sudo apt update
-      
-      - name: Install gcc
-        run: sudo apt install gcc-arm-none-eabi
+      - name: Prepare enviroment
+        run: sudo apt update && sudo apt install gcc-arm-none-eabi
 
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Build app
-        run: ./tols/script/build.sh Release
+        run: ./tools/script/build.sh Release
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
