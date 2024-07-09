@@ -13,9 +13,6 @@ endif()
 # Set the project name
 set(CMAKE_PROJECT_NAME app)
 
-# Enable compile command to ease indexing with e.g. clangd
-set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
-
 # Enable CMake support for ASM and C languages
 enable_language(C ASM)
 
@@ -46,7 +43,7 @@ endif()
 
 
 # Add subdirectory for tests (only if not using ARM toolchain)
-if(NOT CMAKE_C_COMPILER MATCHES "arm-none-eabi.gcc")
+if(NOT CMAKE_C_COMPILER MATCHES "arm-none-eabi-gcc")
     include(CTest)
     add_subdirectory(external)
     add_subdirectory(lib)
