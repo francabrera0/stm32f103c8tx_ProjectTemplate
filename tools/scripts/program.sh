@@ -13,8 +13,17 @@ if [ -z "$2" ]; then
     exit 1
 fi
 
+if [ "$2" == "Test" ]; then
+    echo "Compile for Debug or Release target"
+    exit 1
+fi
+
 echo "Building app..."
 ./tools/scripts/build.sh $2
+
+if [ $? -ne 0 ]; then
+    exit 1
+fi
 
 PROGRAMER="$1/STM32CubeProgrammer/bin/STM32_Programmer_CLI"
 

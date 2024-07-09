@@ -10,4 +10,5 @@ if [ $? -eq 0 ]; then
     make
 else
     echo "Incorrect debug type."
+    exit 1
 fi
