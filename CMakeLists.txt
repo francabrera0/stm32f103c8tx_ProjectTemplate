@@ -37,6 +37,7 @@ if(CMAKE_C_COMPILER MATCHES "arm-none-eabi-gcc")
     target_link_libraries(${CMAKE_PROJECT_NAME}
         stm32cubemx
         MYLIB
+        MYLIB2
         # Add user defined libraries
     )
 endif()
