@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - name: Prepare environment
-        run: sudo apt update && sudo apt install gcc-arm-none-eabi && sudo apt install gcovr
+        run: sudo apt update && sudo apt install gcc-arm-none-eabi && sudo apt install gcovr && sudo apt install zip
 
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -48,6 +48,9 @@ jobs:
           asset_path: build/Release/app.elf
           asset_name: app.elf
           asset_content_type: application/elf
+      
+      - name: Compress coverage folder
+        run: zip coverage/coverage.zip coverage/*
 
       - name: Upload release asset
         uses: actions/upload-release-asset@v1.0.2
@@ -55,6 +58,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.get_latest_release.outputs.result }}
-          asset_path: coverage
+          asset_path: coverage/coverage.zip
           asset_name: coverage
-          asset_content_type: application/folder
+          asset_content_type: application/zip
