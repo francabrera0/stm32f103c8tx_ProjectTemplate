@@ -126,7 +126,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  xTaskCreate(taskDoNothing, "taskDoNothing", 0x100, NULL, configMAX_PRIORITIES, xTaskDoNothingHandle);
+  xTaskCreate(taskDoNoting, "taskDoNothing", 0x100, NULL, configMAX_PRIORITIES, xTaskDoNothingHandle);
   xTaskCreate(taskBlink, "taskBlink", 0x100, NULL, (configMAX_PRIORITIES-5), xTaskBlinkHandle);
 
   vTaskStartScheduler();
