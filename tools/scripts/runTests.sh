@@ -6,4 +6,4 @@ echo "Building app..."
 ./tools/scripts/build.sh Test
 
 cd build/Test
-make test
+ctest --output-on-failure

@@ -4,6 +4,6 @@
 
 echo "Cleaning..."
 
-rm -rf build/
+rm -rf build/ coverage/
 
 echo "Clean succesfully"
