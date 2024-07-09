@@ -215,7 +215,7 @@ static void taskBlink (void *params)
   UNUSED(params);
 
   int a = add(4, 4);
-  HAL_GPIO_WrtePin(LED_GPIO_Port, LED_Pin, 0);
+  HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, 0);
 
   const TickType_t xDelay = 1000 / portTICK_PERIOD_MS;
 
