@@ -5,7 +5,6 @@
             "name": "default",
             "hidden": true,
             "binaryDir": "${sourceDir}/build/${presetName}",
-            "toolchainFile": "${sourceDir}/cmake/gcc-arm-none-eabi.cmake",
             "cacheVariables": {
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
             }
@@ -13,29 +12,24 @@
         {
             "name": "Debug",
             "inherits": "default",
+            "toolchainFile": "${sourceDir}/cmake/gcc-arm-none-eabi.cmake",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
             }
         },
         {
-            "name": "RelWithDebInfo",
-            "inherits": "default",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "RelWithDebInfo"
-            }
-        },
-        {
             "name": "Release",
             "inherits": "default",
+            "toolchainFile": "${sourceDir}/cmake/gcc-arm-none-eabi.cmake",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
             }
         },
         {
-            "name": "MinSizeRel",
+            "name": "Test",
             "inherits": "default",
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "MinSizeRel"
+                "CMAKE_BUILD_TYPE": "Test"
             }
         }
     ],
@@ -45,16 +39,12 @@
             "configurePreset": "Debug"
         },
         {
-            "name": "RelWithDebInfo",
-            "configurePreset": "RelWithDebInfo"
-        },
-        {
             "name": "Release",
             "configurePreset": "Release"
         },
         {
-            "name": "MinSizeRel",
-            "configurePreset": "MinSizeRel"
+            "name": "Test",
+            "configurePreset": "Test"
         }
     ]
 }
