@@ -18,6 +18,9 @@ jobs:
       - name: Build app
         run: ./tools/scripts/build.sh Release
 
+      - name: Run tests and coverage
+        run: ./tools/scripts/genCoverage.sh
+
       - name: Get the latest release
         id: get_latest_release
         uses: actions/github-script@v6
@@ -43,3 +46,13 @@ jobs:
           asset_path: build/Release/app.elf
           asset_name: app.elf
           asset_content_type: application/elf
+
+      - name: Upload release asset
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.get_latest_release.outputs.result }}
+          asset_path: coverage
+          asset_name: coverage
+          asset_content_type: application/folder
