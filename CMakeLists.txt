@@ -44,6 +44,7 @@ endif()
 
 # Add subdirectory for tests (only if not using ARM toolchain)
 if(NOT CMAKE_C_COMPILER MATCHES "arm-none-eabi-gcc")
+    set(CMAKE_C_FLAGS_PROFILE --coverage)
     include(CTest)
     add_subdirectory(external)
     add_subdirectory(lib)

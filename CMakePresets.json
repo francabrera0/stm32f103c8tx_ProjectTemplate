@@ -29,7 +29,7 @@
             "name": "Test",
             "inherits": "default",
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Test"
+                "CMAKE_BUILD_TYPE": "PROFILE"
             }
         }
     ],
