@@ -13,7 +13,7 @@ void test_sum(void)
 
 void test_sum2(void)
 {
-    TEST_ASSERT_EQUAL(1, sub(16, 15));
+    TEST_ASSERT_EQUAL(2, sub(16, 15));
 }
 
 int main()
