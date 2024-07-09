@@ -7,7 +7,7 @@ void tearDown(void) {} /* Is run after every test, put unit clean-up calls here.
 
 void test_sum(void) 
 {
-    TEST_ASSERT_EQUAL(20, add(10, 10));
+    TEST_ASSERT_EQUAL(21, add(10, 10));
     TEST_ASSERT_EQUAL(60, add(50, 10));
 }
 
